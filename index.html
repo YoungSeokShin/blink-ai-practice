@@ -162,6 +162,7 @@
       <thead>
         <tr>
           <th>No</th>
+          <th>Blink Count</th>
           <th>Blink/min</th>
           <th>Avg Close</th>
           <th>Long Close</th>
@@ -281,6 +282,7 @@
       const eyeClosedRatio = elapsedSec > 0 ? totalClosedTime / elapsedSec : 0;
 
       return {
+        blink_count: blinkCount,
         blink_per_min: Number(blinkPerMin.toFixed(2)),
         avg_close_duration: Number(avgClose.toFixed(3)),
         long_close_count: longCloseCount,
@@ -361,6 +363,7 @@
       const features = getCurrentFeatures();
 
       savedData.push({
+        blink_count: features.blink_count,
         blink_per_min: features.blink_per_min,
         avg_close_duration: features.avg_close_duration,
         long_close_count: features.long_close_count,
@@ -391,6 +394,7 @@
 
         tr.innerHTML = `
           <td>${index + 1}</td>
+          <td>${item.blink_count}</td>
           <td>${item.blink_per_min}</td>
           <td>${item.avg_close_duration}</td>
           <td>${item.long_close_count}</td>
@@ -409,6 +413,7 @@
       }
 
       const header = [
+        "blink_count",
         "blink_per_min",
         "avg_close_duration",
         "long_close_count",
@@ -417,6 +422,7 @@
       ];
 
       const rows = savedData.map(item => [
+        item.blink_count,
         item.blink_per_min,
         item.avg_close_duration,
         item.long_close_count,
